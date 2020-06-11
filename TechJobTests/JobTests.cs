@@ -49,13 +49,33 @@ namespace TechJobTests
         {
             Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-            Assert.AreEqual("ID: 5", job.ToString().Split('\n')[1]);
+            Assert.AreEqual("ID: 6", job.ToString().Split('\n')[1]);
             Assert.AreEqual("Name: Product tester", job.ToString().Split('\n')[2]);
             Assert.AreEqual("Employer: ACME", job.ToString().Split('\n')[3]);
             Assert.AreEqual("Location: Desert", job.ToString().Split('\n')[4]);
             Assert.AreEqual("Position Type: Quality control", job.ToString().Split('\n')[5]);
             Assert.AreEqual("Core Competency: Persistence", job.ToString().Split('\n')[6]);
+        }
 
+        [TestMethod]
+        public void TestJobsToStringEmptyField()
+        {
+            Job job = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+            //Assert.AreEqual("ID: 5", job.ToString().Split('\n')[1]);
+            //Assert.AreEqual("Name: Product tester", job.ToString().Split('\n')[2]);
+            Assert.AreEqual("Employer: Data not available", job.ToString().Split('\n')[3]);
+            //Assert.AreEqual("Location: Desert", job.ToString().Split('\n')[4]);
+            //Assert.AreEqual("Position Type: Quality control", job.ToString().Split('\n')[5]);
+            //Assert.AreEqual("Core Competency: Persistence", job.ToString().Split('\n')[6]);
+        }
+
+        [TestMethod]
+        public void TestJobsToStringAllEmptyFields()
+        {
+            Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+
+            Assert.AreEqual("OOPS! This job does not seem to exist.", job.ToString().Split('\n')[1]);
         }
     }
 }

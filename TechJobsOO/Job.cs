@@ -53,12 +53,25 @@ namespace TechJobsOO
             toStringDict.Add("Core Competency", JobCoreCompetency.ToString());
 
             string toStringStr = "\n";
+            int allEmpty = 0;
 
             foreach (string key in toStringDict.Keys)
             {
-                toStringStr += $"{key}: {toStringDict[key]}\n";
+                if (toStringDict[key].Length > 0)
+                {
+                    toStringStr += $"{key}: {toStringDict[key]}\n";
+                }
+                else
+                {
+                    toStringStr += $"{key}: Data not available\n";
+                    allEmpty++;
+                }
+                
             }
-
+            if (allEmpty == 5)
+            {
+                toStringStr = "\nOOPS! This job does not seem to exist.\n";
+            }
             //return $"\nID: {Id}\nName: {Name}\nEmployer: {EmployerName.ToString()}\nLocation: {EmployerLocation.ToString()}\nPosition Type: {JobType.ToString()}\nCore Competency: {JobCoreCompetency.ToString()}\n";
             return toStringStr;
         }
