@@ -23,7 +23,7 @@ namespace TechJobsOO
         {
             Name = name;
             EmployerName = employerName;
-            EmployerLocation = EmployerLocation;
+            EmployerLocation = employerLocation;
             JobType = jobType;
             JobCoreCompetency = jobCoreCompetency;
         }
