@@ -33,7 +33,29 @@ namespace TechJobTests
             Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
             Assert.IsFalse(job1.Equals(job2));
+        }
+
+        [TestMethod]
+        public void TestJobsToStringBlankBeforeAfter()
+        {
+            Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
             
+            Assert.AreEqual('\n', job.ToString()[0]);
+            Assert.AreEqual('\n', job.ToString()[job.ToString().Length - 1]);
+        }
+
+        [TestMethod]
+        public void TestJobsToStringData()
+        {
+            Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+            Assert.AreEqual("ID: 5", job.ToString().Split('\n')[1]);
+            Assert.AreEqual("Name: Product tester", job.ToString().Split('\n')[2]);
+            Assert.AreEqual("Employer: ACME", job.ToString().Split('\n')[3]);
+            Assert.AreEqual("Location: Desert", job.ToString().Split('\n')[4]);
+            Assert.AreEqual("Position Type: Quality control", job.ToString().Split('\n')[5]);
+            Assert.AreEqual("Core Competency: Persistence", job.ToString().Split('\n')[6]);
+
         }
     }
 }

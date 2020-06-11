@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace TechJobsOO
 {
     public class Job
@@ -38,6 +40,27 @@ namespace TechJobsOO
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
+        }
+
+        public override string ToString()
+        {
+            Dictionary<string, string> toStringDict = new Dictionary<string, string>();
+            toStringDict.Add("ID", $"{Id}");
+            toStringDict.Add("Name", Name);
+            toStringDict.Add("Employer", EmployerName.ToString());
+            toStringDict.Add("Location", EmployerLocation.ToString());
+            toStringDict.Add("Position Type", JobType.ToString());
+            toStringDict.Add("Core Competency", JobCoreCompetency.ToString());
+
+            string toStringStr = "\n";
+
+            foreach (string key in toStringDict.Keys)
+            {
+                toStringStr += $"{key}: {toStringDict[key]}\n";
+            }
+
+            //return $"\nID: {Id}\nName: {Name}\nEmployer: {EmployerName.ToString()}\nLocation: {EmployerLocation.ToString()}\nPosition Type: {JobType.ToString()}\nCore Competency: {JobCoreCompetency.ToString()}\n";
+            return toStringStr;
         }
     }
 }
